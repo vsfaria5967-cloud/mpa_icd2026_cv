@@ -2,8 +2,8 @@
 # Disciplina: Introdução à Ciência de Dados
 # ============================================================
 # Arquivo: 01_introducao.R
-# Autor(a): seu nome
-# Data: dd/mm/aaaa
+# Autor(a): Vinícius Silva Faria
+# Data: 26/03/2026
 # Objetivos: Aprender RStudio, script R e alguns fundamentos da linguagem R
 
 # Atalho para criar seções de código: CTRL + SHIFT + R
