@@ -345,6 +345,8 @@ caminho_rds <- here("data/clean/dados_vendas_limpos.rds")
 # importa o arquivo rds com a função read_rds do pacote readr
 dados_vendas_limpos <- readr::read_rds(caminho_rds)
 
+# exibe o objeto
+glimpse(dados_vendas_limpos)
 
 # Exercício 1
 
