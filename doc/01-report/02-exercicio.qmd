@@ -1,0 +1,59 @@
+---
+lang: pt-BR
+title: "Análise de Cenários de Investimento"
+author: "Vinícius Silva Faria"
+date: today
+format: html
+execute:
+  message: false
+  warning: false
+---
+
+
+## Objetivo
+
+Este relatório compara o valor futuro de um investimento de 
+R$ 20.000 aplicado por 60 meses sob diferentes taxas de juros.
+
+## Configuração
+
+```{r}
+# carrega os pacotes necessários
+library(tidyverse)
+```
+
+Função utilizada:
+
+```{r}
+# função para calcular o valor futuro de um investimento
+calcular_montante_mensal <- function(capital, taxa_anual, meses) {
+  montante_final <- capital * (1 + taxa_anual / 12)^meses
+  return(montante_final)
+}
+```
+
+## Cenários analisados
+
+```{r}
+# define as taxas de juros anuais a serem analisadas
+taxas <- c(0.06, 0.08, 0.10, 0.12, 0.15)
+
+# calcula o valor futuro para cada taxa e organiza os resultados em uma tibble
+cenarios <- tibble(
+  taxa_percentual = paste0(taxas * 100, "%"),
+  montante = map_dbl(
+    taxas,
+    \(taxa) calcular_montante_mensal(20000, taxa, 60)
+  ),
+  ganho = montante - 20000
+)
+
+# exibe o objeto/tibble
+cenarios
+```
+
+## Conclusão
+
+A tabela acima mostra como a taxa de juros impacta 
+significativamente o valor final do investimento ao 
+longo de 60 meses.
