@@ -105,9 +105,12 @@ vpl_desvio
 
 # Interpretação (item c): o VPL determinístico não coincide com o VPL simulado
 # devido ao fato de o VPL simulado considerar uma variabilidade nos valores dos
-# parâmetros adotados, na tentativa de simular cenários que podem ocorrer,
+# parâmetros adotados, na tentativa de simular cenários que podem vir a ocorrer,
 # enquanto que o VPL determinístico considera apenas um valor único para cada um
-# dos parâmetros.
+# dos parâmetros. Portanto, o VPL simulado demonstra de forma mais aprofundada
+# quais os retornos possíveis para o projeto, oferecendo a possibilidade de
+# serem calculados e analisados diversos indicadores, como, por exemplo a
+# probabilidade de retorno negativo, o VPL médio e o desvio padão do VPL.
 
 
 # (d) Histograma da distribuição simulada
@@ -193,7 +196,7 @@ es_monetario
 # de perda diária que poderá ser ultrapassado em aproximadamente 1% dos dias.
 # O Expected Shotfall histórico para o horizonte de um dia foi de
 # aproximadamente 4,74% o que representa R$ 1.185,12. Essa é a média das perdas
-# na cauda além do VaR.
+# mais severas, na cauda além do VaR.
 
 
 # Resolução da Questão 3 ----------------------------------------
