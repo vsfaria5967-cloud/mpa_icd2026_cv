@@ -99,7 +99,8 @@ head(resumo_instituicoes, 10)
 
 
 **a.** 
-Alguns estudos deveriam demonstrar, segundo o autor, a magnitude e a incerteza das estimativas e não apenas demonstrar se os dados permitem rejeitar ou aceitar a hipótese nula, conforme é feito no teste de hipótes. Dessa forma, torna-se possível obter uma análise mais aprofundada do problema em questão. Em alguns estudos apenas o teste de hipótese torna-se válido, porém existem na literatura vários estudos que se utilizam apenas do teste de hipótese quando deveriam trazer uma análise mais aprofundada, demonstrando a estimação pontual e a incerteza.
+Alguns estudos deveriam demonstrar, segundo o autor, a magnitude e a incerteza das estimativas e não apenas demonstrar se os dados permitem rejeitar ou aceitar a hipótese nula, conforme é feito no teste de hipótes. Dessa forma, torna-se possível obter uma análise mais aprofundada do problema em questão, o que pode ser muito útil em processos de tomada de decisão.<br>
+Em alguns estudos apenas o teste de hipótese torna-se válido, porém existem na literatura vários estudos que se utilizam apenas do teste de hipótese quando deveriam trazer uma análise mais aprofundada, demonstrando a estimação pontual e a incerteza.
 
 
 **b.** 
