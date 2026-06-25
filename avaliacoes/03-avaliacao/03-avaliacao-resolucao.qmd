@@ -1,0 +1,108 @@
+---
+lang: pt-BR
+title: "Resolução Avaliação 3"
+subtitle: "Introdução à Ciência de Dados - 2026/1 <br> Mestrado Profissional em Administração"
+author: "Vinicius Silva Faria"
+date: 2026-06-25
+date-format: long
+title-block-banner: "#27445C"
+format:
+  html:
+    embed-resources: true
+    toc: true
+execute:
+  echo: true
+  warning: false
+  message: false
+editor: source
+---
+
+
+```{r}
+#| label: setup
+#| echo: true
+
+# configura a exibição de números
+options(digits = 3, scipen = 99)
+
+# Carrega os pacotes necessários
+library(here) # para usar caminhos relativos de arquivos
+library(tidyverse)  # Inclui readr, dplyr, tidyr, ggplot2, etc.
+```
+
+
+
+# Questão 1 
+
+
+**a)** 
+
+```{r}
+# caminhos relativos dos arquivos CSV
+instituicoes_financeiras_csv <- here("data/raw/instituicoes_financeiras.csv")
+indicadores_contabeis_csv <- here("data/raw/indicadores_contabeis.csv")
+carteira_credito_csv <- here("data/raw/carteira_credito.csv")
+
+# importacao dos arquivos CSV
+instituicoes_financeiras <- read.csv(instituicoes_financeiras_csv)
+indicadores_contabeis <- read.csv(indicadores_contabeis_csv)
+carteira_credito <- read.csv(carteira_credito_csv)
+
+# pipeline para combinar as 3 tabelas
+dados_financeiros <- indicadores_contabeis |>
+  # primeiro join: adiciona a carteira de credito
+  left_join(carteira_credito, by = c("id_instituicao", "ano")) |>
+  # segundo join: adiciona o cadastro das instituicoes
+  left_join(instituicoes_financeiras, by = "id_instituicao")
+
+# verifica a estrutura dos dados combinados
+glimpse(dados_financeiros)
+
+# exibe as 10 primeiras linhas
+head(dados_financeiros, 10)
+```
+
+
+
+
+**b)** 
+
+```{r}
+# resumo por instituicao
+resumo_instituicoes <- dados_financeiros |>
+  # cria o indicador de rentabilidade
+  mutate(roa = resultado_liquido / ativo_total) |>
+  # agrupa pelo codigo e pelo nome da instituicao
+  group_by(id_instituicao, nome_instituicao) |>
+  # calcula as médias agrupadas do periodo 
+  summarise(
+    media_ativo_total = mean(ativo_total, na.rm = TRUE),
+    media_carteira_credito = mean(carteira_credito, na.rm = TRUE),
+    media_inadimplencia = mean(inadimplencia, na.rm = TRUE),
+    roa_medio = mean(roa, na.rm = TRUE)
+  ) |>
+  # seleciona as variaveis finais
+  select(id_instituicao, nome_instituicao, media_ativo_total, media_carteira_credito, media_inadimplencia, roa_medio)
+
+# verifica a estrutura do resumo
+glimpse(resumo_instituicoes)
+
+# exibe as 10 primeiras linhas
+head(resumo_instituicoes, 10)
+```
+
+
+
+
+
+# Questão 2 
+
+
+**a.** 
+Alguns estudos deveriam demonstrar, segundo o autor, a magnitude e a incerteza das estimativas e não apenas demonstrar se os dados permitem rejeitar ou aceitar a hipótese nula, conforme é feito no teste de hipótes. Dessa forma, torna-se possível obter uma análise mais aprofundada do problema em questão. Em alguns estudos apenas o teste de hipótese torna-se válido, porém existem na literatura vários estudos que se utilizam apenas do teste de hipótese quando deveriam trazer uma análise mais aprofundada, demonstrando a estimação pontual e a incerteza.
+
+
+**b.** 
+1. Em muitos casos em que os tomadores de decisão precisam decidir se devem ou não implementar uma nova política, os intervalos de confiança são uma forma mais útil de comunicar a incerteza das estimativas pontuais.<br>
+2. Em alguns casos, as perguntas de interesse são naturalmente formuladas como testes de hipóteses. Nesses casos, a apresentação de estimativas e incerteza apresentam pouca utilidade, sendo mais recomendável o uso de valores-p para comunicar evidência.<br>
+3. Seria mais recomendável que os autores fossem recompensados por apresentar de forma mais aprofundada os seus planos de pré-análise sempre que possível, a fim de evitar que os autores caiam na "armadilha" do viés de seleção, propositalmente ou não.
