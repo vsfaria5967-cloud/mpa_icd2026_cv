@@ -1,0 +1,29 @@
+---
+lang: pt-BR
+title: "Análise de Cenários de Investimento"
+author: "Vinícius Silva Faria"
+date: 30/04/2026
+format: html
+execute:
+  message: false
+  warning: false
+---
+
+
+## Exercício 1
+
+Retornos líquidos em um mês:
+0.06, 0.02, -0.01, -0.04
+
+Probabilidades respectivas:
+0.15, 0.45, 0.25, 0.15
+
+Quantidade de meses independentes a simular
+10000
+
+
+```r
+# fixa o ponto inicial do gerador pseudoaleatório
+set.seed(123)
+
+```

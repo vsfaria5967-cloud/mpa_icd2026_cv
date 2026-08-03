@@ -1,0 +1,245 @@
+---
+lang: pt-BR
+title: "Lista de Exercícios 05 - Slides Aula 8"
+author: "Vinícius Silva Faria"
+format: html
+execute:
+  message: false
+  warning: false
+---
+
+
+## Exercício 1
+
+1. Definindo espaço amostral S<br>
+$$S = \{n, f, h\}$$
+Em que:<br>
+*n*: não aquisição<br>
+*f*: aquisição amigável<br>
+*h*: aquisição hostil<br>
+
+2. Definindo eventos<br>
+A: ocorre aquisição<br>
+$$A = \{f, h\}$$
+F: aquisição amigável<br>
+$$F = \{f\}$$
+H: aquisição hostil<br>
+$$H = \{h\}$$
+
+3. Identificação dos eventos mutuamente exclusivos<br>
+$$F∩H = ∅$$
+
+## Exercício 2
+
+Probabilidade de retorno negativo da carteira no mês: 18%<br>
+
+Eventos:<br>
+A: ação X cai mais de 2% no dia;<br>
+B: ação Y cai mais de 2% no dia.
+
+Probabilidades:<br>
+$P(A) = 0,10,$ $P(B) = 0,08,$  $P(A∩B) = 0,04$
+
+1. $P(R) = 0,18$<br>
+ $P(\bar{R}) = 1 - 0,18 = 0,82$<br>
+ A probabilidade de a carteira não apresentar um retorno negativo no mês é de **82%**.
+ 
+2. $P(A∪B) = P(A) + P(B) - P(A∩B)$<br>
+  $P(A∪B) = 0,10 + 0,08 - 0,04 = 0,14$<br>
+  A probabilidade de uma ou as duas ações caírem mais de 2% no dia é de **14%**.
+
+## Exercício 3
+
+Evento A: gestor supera o seu benchmark em qualquer ano.<br>
+Probabilidade: $P(A) = 0,50$
+
+1. $0,50^{10} = 0,0009765625$<br>
+A probablidade de um gestor superar o seu benchmark em 10 anos consecutivos é de **0,0977%**.
+
+2. $0,50^{10} * 2000 = 1,953125$<br>
+Em um universo com 2.000 gestores esperaríamos aproximadamente 2 gestores superando o seu benchmark.
+
+3. Dificilmente um gestor se manterá no topo de um ranking por 10 anos consecutivos, visto que essa probabilidade é muito baixa (0,0977%). Contudo, considerando um grupo maior de gestores, existe a possibilidade de que alguns poucos consigam se manter no topo ao longo de um período como esse por mero acaso.
+
+4. Se C e D são independentes eles podem ocorrer juntos ou não, sendo P(C) e P(D) positivos, logo $P(C∩D) = P(C)P(D)$.<br>
+Se C e D são mutuamente exclusivos, então $P(C∩D) = 0$.<br>
+Portanto, se C e D são independentes, eles não podem ser mutuamente exclusivos, visto que $P(C∩D)$ deve ser maior que 0.
+
+## Exercício 4
+
+Definindo os eventos:<br>
+- A: cliente atrasou uma parcela<br>
+- B: cliente ficou inadimplente<br>
+- A∩B: cliente atrasou e ficou inadimplente
+
+Probabilidades:<br>
+- $P(A) = 0,15$<br>
+- $P(B) = 0,09$<br>
+- $P(A∩B) = 0,06$
+
+Cálculo:<br>
+$$P(B|A) = \frac{P(A∩B)}{P(A)} = \frac{0,06}{0,15} = 0,40$$
+Entre os clientes que atrasaram, aproximadamente 40% ficaram inadimplentes.
+
+## Exercício 5
+
+Pesos:<br>
+- Baixo risco: $P(G_1) = 0,50$<br>
+- Médio risco: $P(G_2) = 0,35$<br>
+- Alto risco: $P(G_3) = 0,15$
+
+Taxa de inadimplência por grupo:<br>
+- $P(A|G_1) = 0,03$<br>
+- $P(A|G_2) = 0,08$<br>
+- $P(A|G_3) = 0,22$
+
+Taxa total de inadimplência da carteira:
+$$P(A) = P(A|G_1)P(G_1) + P(A|G_2)P(G_2) + P(A|G_3)P(G_3)$$
+$$P(A) = 0,03 * 0,50 + 0,08 * 0,35 + 0,22 * 0,15$$
+$$P(A) = 0,076$$
+A taxa total de inadimplência da carteira é de **7,6%**.
+
+## Exercício 6
+
+- 8% das empresas realmente entram em dificuldade financeira:<br>
+$P(D) = 0,08$<br>
+- Entre as empresas que entram em dificuldade, 85% são classificadas como risco elevado:<br>
+$P(R|D) = 0,85$<br>
+- Entre as empresas saudáveis, 25% também são classificadas como risco elevado:<br>
+$P(R|\bar{D}) = 0,25$
+
+1. $$P(R) = P(R|D)P(D) + P(R|\bar{D})P(\bar{D})$$
+$$P(R) = 0,85 * 0,08 + 0,25 * (1-0,08)$$
+$$P(R) = 0,298$$
+A probabilidade total de uma empresa ser classificada como risco elevado é de **29,80%**.
+
+2. $$P(D|R) = \frac{P(R|D)P(D)}{P(R)}$$
+$$P(D|R) = \frac{0,85*0,08}{0,298}$$
+$$P(D|R) = 0,2282$$
+A probabilidade de dificuldade financeira dado que a empresa foi classificada como de risco elevado é de **22,82%**.
+
+## Exercício 7
+
+```{r}
+# Semente
+set.seed(2026)
+
+# Quantidades de lançamentos
+n1000 <- 1000
+n10000 <- 10000
+n100000 <- 100000
+
+# Simulações
+
+# 1.000 lançamentos
+resultado1000 <- sample(
+  c("cara", "coroa"),
+  size = n1000,
+  replace = TRUE,
+  prob = c(0.5, 0.5)
+)
+
+# 10.000 lançamentos
+resultado10000 <- sample(
+  c("cara", "coroa"),
+  size = n10000,
+  replace = TRUE,
+  prob = c(0.5, 0.5)
+)
+
+# 100.000 lançamentos
+resultado100000 <- sample(
+  c("cara", "coroa"),
+  size = n100000,
+  replace = TRUE,
+  prob = c(0.5, 0.5)
+)
+
+# Frequência relativa de caras
+frequencia1000 <- sum(resultado1000 == "cara") / n1000
+frequencia10000 <- sum(resultado10000 == "cara") / n10000
+frequencia100000 <- sum(resultado100000 == "cara") / n100000
+
+# Mostra os resultados
+frequencia1000
+frequencia10000
+frequencia100000
+```
+
+**Interpretação:** À medida que o número de lançamentos aumenta, a frequência de caras fica cada vez mais próxima da probabilidade teórica de 50%, evidenciando, portanto, a Lei dos Grandes Números, que afirma que quanto maior o número de observações, mais a frequência relativa tende a se aproximar da probabilidade teórica.
+
+## Exercício 8
+
+```{r}
+# Número de empresas
+n <- 100000
+
+# Semente
+set.seed(2026)
+
+# Empresas que entram em dificuldade financeira
+dificuldade_financeira <- sample(
+  c("em_dificuldade", "sem_dificuldade"),
+  size = n,
+  replace = TRUE,
+  prob = c(0.08, 0.92)
+)
+
+# Calcula a frequência relativa das empresas em dificuldade financeira
+frequencia_dificuldade_financeira <- sum(dificuldade_financeira == "em_dificuldade") / n
+
+# Mostra a quantidade proporcional de empresas que entram em dificuldade financeira
+frequencia_dificuldade_financeira
+
+# Simula a classificação de risco elevado de acordo com a situação real da empresa
+
+# Define os números de empresas em dificuldade financeira e saudáveis
+n_em_dificuldade_financeira <- frequencia_dificuldade_financeira * n
+n_saudaveis <- (1 - frequencia_dificuldade_financeira) * n
+
+# Risco elevado em empresas em dificuldade financeira
+risco_em_dificuldade_financeira <- sample(
+  c("com_risco", "sem_risco"),
+  size = n_em_dificuldade_financeira,
+  replace = TRUE,
+  prob = c(0.85, 0.15)
+)
+
+# Risco elevado em empresas saudáveis
+risco_em_saudaveis <- sample(
+  c("com_risco", "sem_risco"),
+  size = n_saudaveis,
+  replace = TRUE,
+  prob = c(0.25, 0.75)
+)
+
+# Calcula a frequência relativa das empresas com classificação de risco elevada nas empresas em dificuldade financeira
+frequencia_risco_em_dificuldade_financeira <- sum(risco_em_dificuldade_financeira == "com_risco") / n_em_dificuldade_financeira
+
+# Calcula a frequência relativa das empresas com classificação de risco elevada nas empresas saudáveis
+frequencia_risco_em_saudaveis <- sum(risco_em_saudaveis == "com_risco") / n_saudaveis
+
+# Mostra a quantidade proporcional de empresas com classificação de risco elevada nas empresas em dificuldade financeira
+frequencia_risco_em_dificuldade_financeira
+
+# Mostra a quantidade proporcional de empresas com classificação de risco elevada nas empresas saudáveis
+frequencia_risco_em_saudaveis
+
+# Calcula a proporção total de empresas classificadas como risco elevado
+total_empresas_risco_elevado <- frequencia_risco_em_dificuldade_financeira * frequencia_dificuldade_financeira +
+  frequencia_risco_em_saudaveis * (1-frequencia_dificuldade_financeira)
+
+# Mostra a proporção total de empresas classificadas como risco elevado
+total_empresas_risco_elevado
+
+# Estima a proporção de empresas que estão em dificuldade financeira dentre as
+# empresas classificadas como de risco elevado
+prob_dificuldade_finaceira_em_risco_elevado <- (frequencia_risco_em_dificuldade_financeira *
+  frequencia_dificuldade_financeira) / total_empresas_risco_elevado
+
+# Mostra a estimativa proporcional de empresas que estão em dificuldade financeira
+# dentre as empresas classificadas como de risco elevado
+prob_dificuldade_finaceira_em_risco_elevado
+```
+
+**Conclusão:** Os resultados observados nas simulações estão muito próximos dos valores teóricos encontrados no Exercício 6, demonstrando que, com um número maior de observações, as frequências tendem a se aproximar das probabilidades teóricas.
